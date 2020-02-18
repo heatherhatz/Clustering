@@ -1,0 +1,26 @@
+Clustering of high-dimensional, categorical dataset
+# For categorical data Kmeans or KNN are not the most optimal models. 
+# Instead clustering methods such as K-modes, hierarchical, or agglomerative clustering are better designed to model this data. 
+
+X = df_dum[[insert data]]
+
+km = KModes(n_clusters=100, init='Huang', n_init=5, verbose=1)
+clusters = km.fit_predict(X)
+X['clusters'] = clusters
+# Print the cluster centroids
+print(km.cluster_centroids_)
+ 
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+pca = PCA(3)
+ 
+# Turn the dummified df into two columns with PCA
+plot_columns = pca.fit_transform(X.loc[:])
+ 
+# Plot based on the two dimensions, and shade by cluster label
+plt.scatter(x=plot_columns[:,1], y=plot_columns[:,0], c=X['clusters'], s=30)
+plt.show()
+
+K=20, N=2000
+
+
